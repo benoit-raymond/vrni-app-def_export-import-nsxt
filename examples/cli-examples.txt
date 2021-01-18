@@ -1,13 +1,13 @@
 # CLI commands examples:
 
 ## EXPORT vrni config
-python3 export-app-def.py --appname Funbike --export_folder ./export/ --platform_ip=field-demo.vrni.cmbu.local --vrniuser xxxx@vmware.com  --domain_type LDAP --domain_value=vmware.com --verbose --script_mode EXPORT
+python3 export-import_app-tier-def-vrniuser xxxx@vmware.com  --domain_type LDAP --domain_value=vmware.com --verbose --script_mode EXPORT
 
 ## IMPORT into NSX-T
 #### via JSON Expression file
-python3 export-app-def.py --appname Funbike --expression_jsonfile Funbike-SG.json --verbose --script_mode IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin
+python3 export-import_app-tier-def.py --appname Funbike --expression_jsonfile Funbike-SG.json --verbose --script_mode IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin
 #### via automatic vrni translation (based on prevoiusly exported json file)
-python3 export-app-def.py --appname Funbike  --verbose --script_mode IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin --export_folder ./export/ 
+python3 export-import_app-tier-def.py --appname Funbike  --verbose --script_mode IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin --export_folder ./export/ 
 
 ## EXPORT_IMPORT
-python3 export-app-def.py --appname Funbike --verbose --script_mode EXPORT_IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin --export_folder ./export/ --platform_ip=vrni-fqdn.vrni.cmbu.local --vrniuser xxxx@vmware.com  --domain_type LDAP --domain_value=vmware.com
+python3 export-import_app-tier-def.py --appname Funbike --verbose --script_mode EXPORT_IMPORT --nsxt_fqdn "nsx-t-fqdn" --nsxtuser admin --export_folder ./export/ --platform_ip=vrni-fqdn.vrni.cmbu.local --vrniuser xxxx@vmware.com  --domain_type LDAP --domain_value=vmware.com
