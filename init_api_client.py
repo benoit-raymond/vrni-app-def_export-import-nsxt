@@ -8,6 +8,7 @@ import sys
 import utilities
 import logging
 import requests
+import getpass
 
 logger = logging.getLogger('vrni_sdk')
 
@@ -36,12 +37,12 @@ def delete_token(args, api_client):
 def get_onprem_api_client(args):
     config = swagger_client.Configuration()
     config.verify_ssl = False
-
+    passwd = getpass.getpass('Please enter vRNI password for username ' + args.vrniuser + ":  ")
     logger.info("Getting api client for IP <{}>".format(args.platform_ip))
     api_client = swagger_client.ApiClient(host="https://{}/api/ni".format(args.platform_ip))
     auth_api = swagger_client.AuthenticationApi(api_client=api_client)
     if args.domain_type == "LOCAL" or args.domain_type == "LDAP":
-        user_creds = swagger_client.UserCredential(username=args.username, password=args.password,
+        user_creds = swagger_client.UserCredential(username=args.vrniuser, password=passwd,
                                                    domain=dict(domain_type=args.domain_type, value=args.domain_value))
         auth_token = auth_api.create(user_creds)
     elif args.domain_type == "VIDM":
@@ -95,10 +96,10 @@ def parse_arguments():
                         help="Setup deployment type: onprem or vrnic", default='onprem')
     parser.add_argument('--platform_ip', action='store',
                         help='IP address of vRNI platform. In case of cluster IP address of Platform-1')
-    parser.add_argument('--username', action='store', default='admin@local',
+    parser.add_argument('--vrniuser', action='store', default='admin@local',
                         help='user name for authentication')
-    parser.add_argument("--password", action="store",
-                        default='admin', help="password for authentication")
+    #parser.add_argument("--password", action="store",
+    #                    default='admin', help="password for authentication")
     parser.add_argument("--domain_type", action="store", type=domain_type,
                         default='LOCAL', help="domain type for authentication: LOCAL or LDAP or VIDM")
     parser.add_argument("--domain_value", action="store",

@@ -1,0 +1,23 @@
+{
+  "results": [
+    {
+      "expression": [
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "TenA",
+          "resource_type": "Condition"
+        },
+        {
+          "member_type": "VirtualMachine",
+          "key": "Tag",
+          "operator": "EQUALS",
+          "value": "TenAA",
+          "resource_type": "Condition"
+        }
+      ],
+      "id": "Funbike-API-vRNI-Import-Tier"
+    }
+  ]
+}
